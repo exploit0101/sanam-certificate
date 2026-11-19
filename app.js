@@ -22,6 +22,16 @@ function openDialog(title, content) {
 }
 
 $('.dialog-close').addEventListener('click', () => dialog.close());
+// Scroll without replacing the credential URL's required fragment.
+$$('a[href^="#"]').forEach(anchor => {
+  const target = document.getElementById(anchor.getAttribute('href').slice(1));
+  if (!target) return;
+  anchor.addEventListener('click', event => {
+    event.preventDefault();
+    target.scrollIntoView({ behavior: 'smooth', block: 'start' });
+    if (target.hasAttribute('tabindex')) target.focus({ preventScroll: true });
+  });
+});
 dialog.addEventListener('click', (event) => {
   const box = dialog.getBoundingClientRect();
   if (event.target === dialog && (event.clientX < box.left || event.clientX > box.right || event.clientY < box.top || event.clientY > box.bottom)) dialog.close();
@@ -186,7 +196,7 @@ $('#rmi-embed').addEventListener('click', () => {
     <p>Copy this code to display the credential on your website.</p>
     <label for="embed-code">Embed code</label><textarea id="embed-code" readonly></textarea>
     <div class="dialog-actions"><button class="action-button" type="button" data-copy="embed">Copy Embed Code</button></div>`);
-  $('#embed-code').value = `<iframe src="${location.origin}${location.pathname}" title="Credential profile — Sanam Naveen" width="100%" height="850" style="border:0" loading="lazy"></iframe>`;
+  $('#embed-code').value = `<iframe src="${location.origin}${location.pathname}${location.hash}" title="Credential profile — Sanam Naveen" width="100%" height="850" style="border:0" loading="lazy"></iframe>`;
 });
 
 $('#rmi-help').addEventListener('click', () => {
