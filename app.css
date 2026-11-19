@@ -1,0 +1,82 @@
+/* Small behavior and responsive fixes; reference.css retains the supplied design. */
+[hidden] { display: none !important; }
+html { scroll-behavior: smooth; }
+body { margin: 0; }
+.verified-issuer[hidden] { display: none !important; }
+.credential-qr-preview { display: block; width: min(240px, 100%); height: auto; margin: 20px auto; }
+.qr-url { overflow-wrap: anywhere; font-size: 14px; }
+button, a, [role="tab"], select { -webkit-tap-highlight-color: transparent; }
+button:focus-visible, a:focus-visible, [role="tab"]:focus-visible, select:focus-visible {
+  outline: 2px solid #007c83;
+  outline-offset: 4px;
+}
+.banner > accredible-certificate { flex-shrink: 0; }
+.certificate-artwork { display: block; width: 100%; height: 100%; object-fit: contain; }
+.banner .badge-wrapper { width: min(100%, 400px); }
+.banner .badge-wrapper .svg-container { aspect-ratio: 1; }
+.banner .badge-wrapper svg { display: block; height: auto; }
+mat-icon > svg { display: block; width: 100%; height: 100%; }
+.main-panel-expand-container.expanded { max-height: none !important; }
+.main-panel-expand-container.expanded::after { display: none !important; }
+.main-panel-expand-container.expanded { overflow: visible; }
+.expand-button-container button[aria-expanded="true"] mat-icon { transform: rotate(180deg); }
+#action-dialog {
+  width: min(520px, calc(100vw - 32px));
+  max-height: min(85vh, 800px);
+  padding: 28px;
+  border: 1px solid #dfe3e6;
+  border-radius: 8px;
+  background: #fff;
+  color: #333;
+  box-shadow: 0 16px 60px #0003;
+  font: 16px/1.5 'Source Sans Pro', Arial, sans-serif;
+  box-sizing: border-box;
+}
+#action-dialog::backdrop { background: #131b2b80; }
+.dialog-heading { display: flex; align-items: center; justify-content: space-between; gap: 20px; margin-bottom: 20px; }
+.dialog-heading h2 { margin: 0; font-size: 24px; font-weight: 600; line-height: 1.25; }
+.dialog-close { border: 0; background: transparent; color: #53616b; cursor: pointer; font: 30px/1 Arial; padding: 0 4px; }
+#dialog-content p { margin: 0 0 16px; }
+#dialog-content label { display: block; font-weight: 600; margin: 18px 0 6px; }
+#dialog-content input, #dialog-content textarea {
+  width: 100%; box-sizing: border-box; border: 1px solid #b9c2c9; border-radius: 4px;
+  padding: 10px 12px; font: inherit; color: #333; background: #fff;
+}
+#dialog-content textarea { min-height: 110px; resize: vertical; font-size: 14px; }
+.dialog-actions { display: flex; gap: 12px; margin-top: 20px; flex-wrap: wrap; }
+.action-button {
+  display: inline-flex; align-items: center; justify-content: center; min-height: 42px;
+  padding: 8px 18px; border: 1px solid #007b83; border-radius: 4px; background: #007b83;
+  color: #fff !important; text-decoration: none !important; cursor: pointer; font: 600 16px 'Source Sans Pro', sans-serif;
+}
+.action-button.secondary { color: #007b83 !important; background: #fff; }
+.download-options { display: grid; gap: 12px; }
+.download-option { display: flex; align-items: center; gap: 14px; border: 1px solid #dde3e7; border-radius: 5px; padding: 16px; background: white; color: #333; text-align: left; cursor: pointer; font: inherit; text-decoration: none !important; }
+.download-option:hover { border-color: #007b83; background: #f4fafb; }
+.download-option strong, .download-option small { display: block; }
+.download-option small { margin-top: 2px; font-size: 14px; color: #606b75; }
+.download-file-icon { display: grid; place-items: center; width: 42px; height: 46px; background: #edf6f7; border-radius: 4px; color: #007b83; font-size: 12px; font-weight: 700; }
+.dialog-note { color: #606b75; font-size: 14px; margin-top: 18px !important; }
+.credential-facts { display: grid; grid-template-columns: 110px 1fr; gap: 10px 16px; margin: 20px 0; }
+.credential-facts dt { color: #64717a; }
+.credential-facts dd { margin: 0; }
+.statement-list { padding-left: 22px; }
+.statement-list li { margin-bottom: 14px; }
+.dialog-share-links { display: flex; gap: 12px; flex-wrap: wrap; }
+.dialog-share-links a { display: inline-block; padding: 10px 16px; border: 1px solid #d6dfe4; border-radius: 4px; }
+#toast { position: fixed; z-index: 1000; bottom: 88px; left: 50%; transform: translateX(-50%); padding: 12px 22px; border-radius: 4px; background: #263645; color: #fff; box-shadow: 0 4px 20px #0002; font: 16px 'Source Sans Pro', sans-serif; }
+@media (max-width: 575px) {
+  .cookies-banner { top: unset !important; bottom: 0; }
+  .cookies-banner .content { gap: 8px; font-size: 14px; }
+  .banner-container { padding-top: 24px; padding-bottom: 24px; }
+  .main-panel .responsive-menu-container { display: flex; flex-wrap: wrap; }
+  #action-dialog { padding: 22px; }
+  .dialog-heading h2 { font-size: 22px; }
+}
+@media print {
+  @page { size: letter landscape; margin: 0; }
+  body * { visibility: hidden !important; }
+  #certificatePanel, #certificatePanel * { visibility: visible !important; }
+  #certificatePanel { position: fixed !important; inset: 0 !important; width: 1056px !important; height: 816px !important; }
+  #action-dialog, .cookies-banner { display: none !important; }
+}
