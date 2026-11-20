@@ -242,10 +242,10 @@ $('#signIn').addEventListener('click', () => {
   location.href = $('.sign-in-more-options a').href;
 });
 const languageSelector = $('accredible-language-selector select');
+if (languageSelector) languageSelector.value = 'en-gb';
 if (languageSelector) languageSelector.addEventListener('change', () => {
   openDialog('Language', '<p>For translated credential content, open the original page and choose your preferred language.</p><div class="dialog-actions"><a class="action-button" href="' + originalUrl + '" target="_blank" rel="noopener noreferrer">Open Original Page</a></div>');
-  const english = [...languageSelector.options].find(option => option.textContent.trim() === 'English (US)');
-  if (english) languageSelector.value = english.value;
+  languageSelector.value = 'en-gb';
 });
 
 dialogContent.addEventListener('submit', event => {
